@@ -3,90 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>San Luis Avanza Contigo - Cómics Oficiales</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Galería de Historietas - San Luis Avanza</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #1a365d;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .card-content {
+            padding: 15px;
+            text-align: center;
+        }
+        .card-content h3 {
+            font-size: 15px;
+            color: #2c5282;
+            margin: 0;
+        }
+    </style>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen">
-    <!-- Header -->
-    <header class="bg-slate-950 border-b border-slate-800 py-6 text-center">
-        <div class="container mx-auto px-4">
-            <span class="bg-emerald-600 text-white text-xs font-bold uppercase px-3 py-1 rounded-full tracking-wider">Eje 1</span>
-            <h1 class="text-3xl font-extrabold text-emerald-400 mt-2">Seguridad Ciudadana y Orden Urbano</h1>
-            <p class="text-slate-400 text-sm mt-1">Historias de transformación, seguridad y comunidad con Christian Pardo.</p>
-        </div>
+<body>
+
+    <header>
+        <h1>Galería de Historietas y Proyectos</h1>
+        <p>Visión Perú Cumple - San Luis Avanza</p>
     </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8 max-w-4xl space-y-12">
+    <div class="container" id="galeria-container">
+        <!-- Las tarjetas se cargarán automáticamente aquí mediante JavaScript -->
+    </div>
 
-        <!-- Cómic 1 -->
-        <section class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-xl p-4 md:p-6">
-            <h2 class="text-lg font-bold text-emerald-300 mb-3">"¡San Luis Renace! Recuperación de Espacios Públicos"</h2>
-            <div class="rounded-lg overflow-hidden bg-slate-900 flex justify-center">
-                <img src="images/comic-1.png" alt="Cómic 1 - San Luis Renace" class="w-full max-w-2xl h-auto object-contain">
-            </div>
-            <p class="text-slate-400 text-xs mt-3 text-center">Recuperación de parques abandonados y embellecimiento de áreas verdes junto a los vecinos del distrito.</p>
-        </section>
+    <script>
+        const totalComics = 77;
+        const container = document.getElementById('galeria-container');
 
-        <!-- Cómic 2 -->
-        <section class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-xl p-4 md:p-6">
-            <h2 class="text-lg font-bold text-emerald-300 mb-3">"¡San Luis Recicla y Crece! Gestión Ambiental y Puntos Limpios"</h2>
-            <div class="rounded-lg overflow-hidden bg-slate-900 flex justify-center">
-                <img src="images/comic-2.png" alt="Cómic 2 - San Luis Recicla y Crece" class="w-full max-w-2xl h-auto object-contain">
-            </div>
-            <p class="text-slate-400 text-xs mt-3 text-center">Implementación del programa de segregación en fuente y contenedores comunitarios para un distrito ecoamigable.</p>
-        </section>
+        for (let i = 1; i <= totalComics; i++) {
+            const card = document.createElement('div');
+            card.className = 'card';
 
-        <!-- Cómic 3 -->
-        <section class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-xl p-4 md:p-6">
-            <h2 class="text-lg font-bold text-emerald-300 mb-3">"La misma calle ahora está brillante y segura, y los vecinos disfrutan del espacio con tranquilidad"</h2>
-            <div class="rounded-lg overflow-hidden bg-slate-900 flex justify-center">
-                <img src="images/comic-3.png" alt="Cómic 3 - Patrullaje Integrado" class="w-full max-w-2xl h-auto object-contain">
-            </div>
-            <p class="text-slate-400 text-xs mt-3 text-center">Instalación de luminarias LED y red interconectada de videovigilancia en puntos críticos.</p>
-        </section>
+            // Del 1 al 9 busca .png, a partir del 10 busca .jpeg
+            let extension = (i < 10) ? 'png' : 'jpeg';
 
-        <!-- Cómic 4 -->
-        <section class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-xl p-4 md:p-6">
-            <h2 class="text-lg font-bold text-emerald-300 mb-3">"¡GRACIAS VECINOS, JUNTOS LOGRAMOS EL CAMBIO!"</h2>
-            <div class="rounded-lg overflow-hidden bg-slate-900 flex justify-center">
-                <img src="images/comic-4.png" alt="Cómic 4 - Modernización de Vigilancia" class="w-full max-w-2xl h-auto object-contain">
-            </div>
-            <p class="text-slate-400 text-xs mt-3 text-center">El orgullo de pertenecer a San Luis.</p>
-        </section>
+            card.innerHTML = `
+                <img src="images/comic-${i}.${extension}" alt="Historieta ${i}" loading="lazy">
+                <div class="card-content">
+                    <h3>Historieta / Proyecto N° ${i}</h3>
+                </div>
+            `;
 
-        <!-- Cómic 5 -->
-        <section class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-xl p-4 md:p-6">
-            <h2 class="text-lg font-bold text-emerald-300 mb-3">"Cámaras Inteligentes: Ojos que Cuidan San Luis"</h2>
-            <div class="rounded-lg overflow-hidden bg-slate-900 flex justify-center">
-                <img src="images/comic-5.png" alt="Cómic 5 - Programas Juveniles" class="w-full max-w-2xl h-auto object-contain">
-            </div>
-            <p class="text-slate-400 text-xs mt-3 text-center">Trabajo articulado entre el serenazgo distrital y la junta vecinal para la prevención del delito.</p>
-        </section>
+            container.appendChild(card);
+        }
+    </script>
 
-        <!-- Cómic 6 -->
-        <section class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-xl p-4 md:p-6">
-            <h2 class="text-lg font-bold text-emerald-300 mb-3">"Serenos y Vecinos: Una sola Patrulla por la Tranquilidad"</h2>
-            <div class="rounded-lg overflow-hidden bg-slate-900 flex justify-center">
-                <img src="images/comic-6.png" alt="Cómic 6 - Comercio Ordenado" class="w-full max-w-2xl h-auto object-contain">
-            </div>
-            <p class="text-slate-400 text-xs mt-3 text-center">El interior del municipio se transforma en un espacio abierto y acogedor, donde los vecinos son atendidos directamente.</p>
-        </section>
-
-        <!-- Cómic 7 -->
-        <section class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-xl p-4 md:p-6">
-            <h2 class="text-lg font-bold text-emerald-300 mb-3">"Serenos y Vecinos: Una sola Patrulla por la Tranquilidad"</h2>
-            <div class="rounded-lg overflow-hidden bg-slate-900 flex justify-center">
-                <img src="images/comic-7.png" alt="Cómic 7 - Respuesta Inmediata" class="w-full max-w-2xl h-auto object-contain">
-            </div>
-            <p class="text-slate-400 text-xs mt-3 text-center">Central de emergencias unificada y canales digitales directos entre la municipalidad y la comunidad.</p>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-800 py-6 text-center text-slate-500 text-xs mt-12">
-        <p>&copy; 2026 San Luis Avanza Contigo. Todos los derechos reservados.</p>
-    </footer>
 </body>
 </html>
